@@ -11,14 +11,25 @@ public class ContaCorrente
     public bool Sacar(double valor)
     {
         if(this.saldo < valor)
-        {
             return false;
-        }
-        else
-        {
-            this.saldo = this.saldo - valor;
-            return true;
-        }
+      
+        this.saldo = this.saldo - valor;
+        return true;
+    }
+
+    public void Deposito(double valor)
+    {
+        this.saldo += valor;
+    }
+
+    public bool Transferir(double valor, ContaCorrente ContaDestino)
+    {
+        if(this.saldo < valor)
+            return false;
+
+        this.saldo -= valor;
+        ContaDestino.Deposito(valor);
+        return true;
     }
 }
 
